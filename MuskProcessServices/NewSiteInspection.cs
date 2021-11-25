@@ -17,9 +17,14 @@ namespace MuskProcessServices
         {
             InitializeComponent();
 
-            // block right side fields until user fills out the site inspection information (left)
-
-            // once filled out block the left side of the screen 
+            // Disable intervention details part from the form, until user creates a site inspection.
+            sectionDropdown.Enabled = false;
+            countField.Enabled = false;
+            commentField.Enabled = false;
+            completedCheckBox.Enabled = false;
+            actionTakenField.Enabled = false;
+            addNewBtn.Enabled = false;
+            uploadBtn.Enabled = false;
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -35,7 +40,7 @@ namespace MuskProcessServices
         private void addNewBtn_Click(object sender, EventArgs e)
         {
             // Get value from form and add them to List<Interventions>
-            interventions.Add(new Intervention(sectionField.SelectedIndex,
+            interventions.Add(new Intervention(sectionDropdown.SelectedIndex,
                 Int32.Parse(countField.Text),
                 commentField.Text,
                 completedCheckBox.Checked,
@@ -43,7 +48,7 @@ namespace MuskProcessServices
                 );
 
             // Clear out the form for new interventions to be added
-            sectionField.SelectedIndex = 0;
+            sectionDropdown.SelectedIndex = 0;
             countField.Text = "";
             commentField.Text = "";
             completedCheckBox.Checked = false;
@@ -67,10 +72,10 @@ namespace MuskProcessServices
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            sectionField.SelectedIndex = 0;
+            sectionDropdown.SelectedIndex = 0;
 
             // get selected item id, defined for testing purposes
-            sectionField.SelectedValue = 0;
+            sectionDropdown.SelectedValue = 0;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -85,7 +90,7 @@ namespace MuskProcessServices
 
         private void section_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            SubHeader obj = sectionField.SelectedItem as SubHeader;
+            SubHeader obj = sectionDropdown.SelectedItem as SubHeader;
             if (obj != null)
                 MessageBox.Show(string.Format(".{0} - {1} selected", obj._subHeaderID, obj._subTitle, MessageBoxButtons.OK, MessageBoxIcon.Information));
 
@@ -104,6 +109,26 @@ namespace MuskProcessServices
             
             Intervention.SaveToDB("INSERT INTO Interventions(SiteInspectionID, SubHeaderID, Count, Comment, Completed, ActionTaken) VALUES(@SiteInspectionID, @SubHeaderID, @Count, @Comment, @Completed, @ActionTaken)", item);
             
+        }
+
+        private void createSiteInspectionBtn_Click(object sender, EventArgs e)
+        {
+            // Enable Intervention details part of the form
+            sectionDropdown.Enabled = true;
+            countField.Enabled = true;
+            commentField.Enabled = true;
+            completedCheckBox.Enabled = true;
+            actionTakenField.Enabled = true;
+            addNewBtn.Enabled = true;
+            uploadBtn.Enabled = true;
+
+            // Disable Site Inspection details form
+            siteDropdown.Enabled = false;
+            workAreaField.Enabled = false;
+            supervisorDropdown.Enabled = false;
+            jobDescriptionField.Enabled = false;
+            inspectorDropdown.Enabled = false;
+            typeField.Enabled = false;
         }
     }
 }

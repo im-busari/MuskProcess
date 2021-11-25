@@ -29,7 +29,7 @@ namespace MuskProcessServices
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.uploadBtn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -49,16 +49,19 @@ namespace MuskProcessServices
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.workAreaField = new System.Windows.Forms.TextBox();
+            this.jobDescriptionField = new System.Windows.Forms.TextBox();
+            this.typeField = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.sectionField = new System.Windows.Forms.ComboBox();
+            this.sectionDropdown = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.createSiteInspectionBtn = new System.Windows.Forms.Button();
+            this.inspectorDropdown = new System.Windows.Forms.ComboBox();
+            this.supervisorDropdown = new System.Windows.Forms.ComboBox();
+            this.siteDropdown = new System.Windows.Forms.ComboBox();
+            this.siteHeader = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.interventionHeader = new System.Windows.Forms.Label();
             this.finishBtn = new System.Windows.Forms.Button();
             this.countField = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
@@ -72,21 +75,21 @@ namespace MuskProcessServices
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // uploadBtn
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Location = new System.Drawing.Point(693, 391);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(67, 28);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Upload";
-            this.button1.UseVisualStyleBackColor = true;
+            this.uploadBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.uploadBtn.Location = new System.Drawing.Point(329, 349);
+            this.uploadBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.uploadBtn.Name = "uploadBtn";
+            this.uploadBtn.Size = new System.Drawing.Size(67, 28);
+            this.uploadBtn.TabIndex = 4;
+            this.uploadBtn.Text = "Upload";
+            this.uploadBtn.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button2.Location = new System.Drawing.Point(773, 391);
+            this.button2.Location = new System.Drawing.Point(409, 349);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(67, 28);
@@ -97,7 +100,7 @@ namespace MuskProcessServices
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(835, 272);
+            this.pictureBox4.Location = new System.Drawing.Point(471, 230);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(100, 89);
@@ -106,7 +109,7 @@ namespace MuskProcessServices
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(693, 272);
+            this.pictureBox3.Location = new System.Drawing.Point(329, 230);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(100, 89);
@@ -115,7 +118,7 @@ namespace MuskProcessServices
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(835, 171);
+            this.pictureBox2.Location = new System.Drawing.Point(471, 129);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(100, 89);
@@ -124,7 +127,7 @@ namespace MuskProcessServices
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(693, 171);
+            this.pictureBox1.Location = new System.Drawing.Point(329, 129);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 89);
@@ -133,7 +136,7 @@ namespace MuskProcessServices
             // 
             // commentField
             // 
-            this.commentField.Location = new System.Drawing.Point(505, 245);
+            this.commentField.Location = new System.Drawing.Point(141, 203);
             this.commentField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.commentField.Multiline = true;
             this.commentField.Name = "commentField";
@@ -145,7 +148,7 @@ namespace MuskProcessServices
             // 
             this.completedCheckBox.AutoSize = true;
             this.completedCheckBox.BackColor = System.Drawing.Color.White;
-            this.completedCheckBox.Location = new System.Drawing.Point(505, 302);
+            this.completedCheckBox.Location = new System.Drawing.Point(141, 260);
             this.completedCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.completedCheckBox.Name = "completedCheckBox";
             this.completedCheckBox.Size = new System.Drawing.Size(97, 21);
@@ -155,7 +158,7 @@ namespace MuskProcessServices
             // 
             // actionTakenField
             // 
-            this.actionTakenField.Location = new System.Drawing.Point(505, 346);
+            this.actionTakenField.Location = new System.Drawing.Point(141, 304);
             this.actionTakenField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.actionTakenField.Multiline = true;
             this.actionTakenField.Name = "actionTakenField";
@@ -166,7 +169,7 @@ namespace MuskProcessServices
             // addNewBtn
             // 
             this.addNewBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.addNewBtn.Location = new System.Drawing.Point(505, 412);
+            this.addNewBtn.Location = new System.Drawing.Point(141, 370);
             this.addNewBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addNewBtn.Name = "addNewBtn";
             this.addNewBtn.Size = new System.Drawing.Size(84, 28);
@@ -179,7 +182,7 @@ namespace MuskProcessServices
             // 
             this.textBox5.BackColor = System.Drawing.Color.White;
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox5.Location = new System.Drawing.Point(397, 204);
+            this.textBox5.Location = new System.Drawing.Point(33, 162);
             this.textBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(89, 15);
@@ -190,7 +193,7 @@ namespace MuskProcessServices
             // 
             this.textBox6.BackColor = System.Drawing.Color.White;
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox6.Location = new System.Drawing.Point(397, 346);
+            this.textBox6.Location = new System.Drawing.Point(33, 304);
             this.textBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(89, 15);
@@ -201,7 +204,7 @@ namespace MuskProcessServices
             // 
             this.textBox8.BackColor = System.Drawing.Color.White;
             this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox8.Location = new System.Drawing.Point(397, 245);
+            this.textBox8.Location = new System.Drawing.Point(33, 203);
             this.textBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(89, 15);
@@ -213,7 +216,7 @@ namespace MuskProcessServices
             // 
             this.textBox9.BackColor = System.Drawing.Color.White;
             this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox9.Location = new System.Drawing.Point(693, 142);
+            this.textBox9.Location = new System.Drawing.Point(329, 100);
             this.textBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(89, 15);
@@ -282,59 +285,35 @@ namespace MuskProcessServices
             this.label8.TabIndex = 26;
             this.label8.Text = "Type";
             // 
-            // textBox7
+            // workAreaField
             // 
-            this.textBox7.Location = new System.Drawing.Point(197, 247);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 22);
-            this.textBox7.TabIndex = 28;
+            this.workAreaField.Location = new System.Drawing.Point(197, 288);
+            this.workAreaField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.workAreaField.Name = "workAreaField";
+            this.workAreaField.Size = new System.Drawing.Size(121, 22);
+            this.workAreaField.TabIndex = 29;
             // 
-            // textBox10
+            // jobDescriptionField
             // 
-            this.textBox10.Location = new System.Drawing.Point(176, 276);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(100, 22);
-            this.textBox10.TabIndex = 29;
+            this.jobDescriptionField.Location = new System.Drawing.Point(176, 239);
+            this.jobDescriptionField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.jobDescriptionField.Name = "jobDescriptionField";
+            this.jobDescriptionField.Size = new System.Drawing.Size(121, 22);
+            this.jobDescriptionField.TabIndex = 31;
             // 
-            // textBox11
+            // typeField
             // 
-            this.textBox11.Location = new System.Drawing.Point(197, 288);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(100, 22);
-            this.textBox11.TabIndex = 29;
-            // 
-            // textBox12
-            // 
-            this.textBox12.Location = new System.Drawing.Point(197, 327);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(100, 22);
-            this.textBox12.TabIndex = 30;
-            // 
-            // textBox14
-            // 
-            this.textBox14.Location = new System.Drawing.Point(176, 239);
-            this.textBox14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(100, 22);
-            this.textBox14.TabIndex = 31;
-            // 
-            // textBox15
-            // 
-            this.textBox15.Location = new System.Drawing.Point(176, 317);
-            this.textBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(100, 22);
-            this.textBox15.TabIndex = 32;
+            this.typeField.Location = new System.Drawing.Point(176, 317);
+            this.typeField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.typeField.Name = "typeField";
+            this.typeField.Size = new System.Drawing.Size(121, 22);
+            this.typeField.TabIndex = 32;
             // 
             // textBox4
             // 
             this.textBox4.BackColor = System.Drawing.Color.White;
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Location = new System.Drawing.Point(397, 162);
+            this.textBox4.Location = new System.Drawing.Point(33, 120);
             this.textBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(89, 15);
@@ -342,35 +321,31 @@ namespace MuskProcessServices
             this.textBox4.Text = "Section";
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
-            // sectionField
+            // sectionDropdown
             // 
-            this.sectionField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.sectionField.FormattingEnabled = true;
-            this.sectionField.Items.AddRange(new object[] {
-            "Working Standards",
-            "Quality",
-            "Site Rules",
-            "Environmental",
-            "Protection of Individuals",
-            "Equipment",
-            "Other"});
-            this.sectionField.Location = new System.Drawing.Point(505, 162);
-            this.sectionField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.sectionField.Name = "sectionField";
-            this.sectionField.Size = new System.Drawing.Size(121, 24);
-            this.sectionField.TabIndex = 17;
-            this.sectionField.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            this.sectionField.SelectionChangeCommitted += new System.EventHandler(this.section_SelectionChangeCommitted);
+            this.sectionDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sectionDropdown.FormattingEnabled = true;
+            this.sectionDropdown.Location = new System.Drawing.Point(141, 120);
+            this.sectionDropdown.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.sectionDropdown.Name = "sectionDropdown";
+            this.sectionDropdown.Size = new System.Drawing.Size(121, 24);
+            this.sectionDropdown.TabIndex = 17;
+            this.sectionDropdown.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.sectionDropdown.SelectionChangeCommitted += new System.EventHandler(this.section_SelectionChangeCommitted);
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.Controls.Add(this.textBox14);
+            this.groupBox1.Controls.Add(this.createSiteInspectionBtn);
+            this.groupBox1.Controls.Add(this.inspectorDropdown);
+            this.groupBox1.Controls.Add(this.supervisorDropdown);
+            this.groupBox1.Controls.Add(this.siteDropdown);
+            this.groupBox1.Controls.Add(this.siteHeader);
+            this.groupBox1.Controls.Add(this.jobDescriptionField);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.textBox15);
+            this.groupBox1.Controls.Add(this.typeField);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.textBox10);
             this.groupBox1.Location = new System.Drawing.Point(21, 126);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
@@ -379,11 +354,80 @@ namespace MuskProcessServices
             this.groupBox1.TabIndex = 33;
             this.groupBox1.TabStop = false;
             // 
+            // createSiteInspectionBtn
+            // 
+            this.createSiteInspectionBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.createSiteInspectionBtn.Location = new System.Drawing.Point(213, 413);
+            this.createSiteInspectionBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.createSiteInspectionBtn.Name = "createSiteInspectionBtn";
+            this.createSiteInspectionBtn.Size = new System.Drawing.Size(84, 28);
+            this.createSiteInspectionBtn.TabIndex = 41;
+            this.createSiteInspectionBtn.Text = "Create";
+            this.createSiteInspectionBtn.UseVisualStyleBackColor = true;
+            this.createSiteInspectionBtn.Click += new System.EventHandler(this.createSiteInspectionBtn_Click);
+            // 
+            // inspectorDropdown
+            // 
+            this.inspectorDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.inspectorDropdown.FormattingEnabled = true;
+            this.inspectorDropdown.Location = new System.Drawing.Point(176, 276);
+            this.inspectorDropdown.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.inspectorDropdown.Name = "inspectorDropdown";
+            this.inspectorDropdown.Size = new System.Drawing.Size(121, 24);
+            this.inspectorDropdown.TabIndex = 40;
+            // 
+            // supervisorDropdown
+            // 
+            this.supervisorDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.supervisorDropdown.FormattingEnabled = true;
+            this.supervisorDropdown.Location = new System.Drawing.Point(176, 200);
+            this.supervisorDropdown.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.supervisorDropdown.Name = "supervisorDropdown";
+            this.supervisorDropdown.Size = new System.Drawing.Size(121, 24);
+            this.supervisorDropdown.TabIndex = 39;
+            // 
+            // siteDropdown
+            // 
+            this.siteDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.siteDropdown.FormattingEnabled = true;
+            this.siteDropdown.Location = new System.Drawing.Point(176, 119);
+            this.siteDropdown.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.siteDropdown.Name = "siteDropdown";
+            this.siteDropdown.Size = new System.Drawing.Size(121, 24);
+            this.siteDropdown.TabIndex = 38;
+            // 
+            // siteHeader
+            // 
+            this.siteHeader.AutoSize = true;
+            this.siteHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siteHeader.Location = new System.Drawing.Point(66, 35);
+            this.siteHeader.Name = "siteHeader";
+            this.siteHeader.Size = new System.Drawing.Size(192, 24);
+            this.siteHeader.TabIndex = 38;
+            this.siteHeader.Text = "Site Inspection Details";
+            // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.White;
+            this.groupBox2.Controls.Add(this.interventionHeader);
             this.groupBox2.Controls.Add(this.finishBtn);
             this.groupBox2.Controls.Add(this.countField);
+            this.groupBox2.Controls.Add(this.pictureBox1);
+            this.groupBox2.Controls.Add(this.pictureBox2);
+            this.groupBox2.Controls.Add(this.pictureBox3);
+            this.groupBox2.Controls.Add(this.pictureBox4);
+            this.groupBox2.Controls.Add(this.uploadBtn);
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.commentField);
+            this.groupBox2.Controls.Add(this.sectionDropdown);
+            this.groupBox2.Controls.Add(this.completedCheckBox);
+            this.groupBox2.Controls.Add(this.textBox9);
+            this.groupBox2.Controls.Add(this.actionTakenField);
+            this.groupBox2.Controls.Add(this.textBox8);
+            this.groupBox2.Controls.Add(this.addNewBtn);
+            this.groupBox2.Controls.Add(this.textBox6);
+            this.groupBox2.Controls.Add(this.textBox4);
+            this.groupBox2.Controls.Add(this.textBox5);
             this.groupBox2.Location = new System.Drawing.Point(365, 126);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
@@ -392,6 +436,16 @@ namespace MuskProcessServices
             this.groupBox2.TabIndex = 34;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // interventionHeader
+            // 
+            this.interventionHeader.AutoSize = true;
+            this.interventionHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.interventionHeader.Location = new System.Drawing.Point(240, 35);
+            this.interventionHeader.Name = "interventionHeader";
+            this.interventionHeader.Size = new System.Drawing.Size(167, 24);
+            this.interventionHeader.TabIndex = 39;
+            this.interventionHeader.Text = "Intervention Details";
             // 
             // finishBtn
             // 
@@ -407,7 +461,7 @@ namespace MuskProcessServices
             // 
             // countField
             // 
-            this.countField.Location = new System.Drawing.Point(140, 77);
+            this.countField.Location = new System.Drawing.Point(141, 162);
             this.countField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.countField.Name = "countField";
             this.countField.Size = new System.Drawing.Size(121, 22);
@@ -455,28 +509,10 @@ namespace MuskProcessServices
             this.Controls.Add(this.label9);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.textBox12);
-            this.Controls.Add(this.textBox11);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.workAreaField);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.sectionField);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.addNewBtn);
-            this.Controls.Add(this.actionTakenField);
-            this.Controls.Add(this.completedCheckBox);
-            this.Controls.Add(this.commentField);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -502,7 +538,7 @@ namespace MuskProcessServices
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button uploadBtn;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox commentField;
         private System.Windows.Forms.CheckBox completedCheckBox;
@@ -518,14 +554,11 @@ namespace MuskProcessServices
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox workAreaField;
+        private System.Windows.Forms.TextBox jobDescriptionField;
+        private System.Windows.Forms.TextBox typeField;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.ComboBox sectionField;
+        private System.Windows.Forms.ComboBox sectionDropdown;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button4;
@@ -533,6 +566,12 @@ namespace MuskProcessServices
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox countField;
         private System.Windows.Forms.Button finishBtn;
+        private System.Windows.Forms.Label siteHeader;
+        private System.Windows.Forms.Label interventionHeader;
+        private System.Windows.Forms.ComboBox inspectorDropdown;
+        private System.Windows.Forms.ComboBox supervisorDropdown;
+        private System.Windows.Forms.ComboBox siteDropdown;
+        private System.Windows.Forms.Button createSiteInspectionBtn;
     }
     
 
