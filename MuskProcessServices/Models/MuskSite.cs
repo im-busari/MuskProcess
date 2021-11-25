@@ -22,21 +22,13 @@ namespace MuskProcessServices.Models
         }
 
         // Methods
-        public static List<MuskSite> getAllSites()
+        public static DataSet getAllSites()
         {
             // Select all sites from database 
             string queryExpression = String.Format("SELECT * FROM Sites");
             DataSet result = queryExpression.getDataSetFromDB();
 
-            // Empty list of sites
-            List<MuskSite> sites = new List<MuskSite>();
-
-            foreach (DataRow row in result.Tables[0].Rows)
-            {
-                sites.Add(new MuskSite(row.Field<int>("SiteID"), row.Field<string>("Name")));
-            }
-
-            return sites;
+            return result;
         }
 
         public int SiteId

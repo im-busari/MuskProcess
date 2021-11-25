@@ -38,30 +38,23 @@ namespace MuskProcessServices
 
         private void populateDropdownFields()
         {
-            List<MuskSite> sites = MuskSite.getAllSites();
-            List<User> users = User.getAllUsers();
-
-            // Site dropdown items
-            foreach (MuskSite site in sites)
-            {
-                SharedMethods.ComboboxItem item = new SharedMethods.ComboboxItem();
-                item.Text = site.Name;
-                item.Value = site.SiteId;
-
-                siteDropdown.Items.Add(item);
-            }
+            // Sites dropdown items
+            siteDropdown.DataSource = MuskSite.getAllSites().Tables[0];
+            siteDropdown.ValueMember = "SiteID";
+            siteDropdown.DisplayMember = "Name";
 
             // Users dropdown items (Supervisor and Inspector)
-            foreach (User user in users)
-            {
-                SharedMethods.ComboboxItem item = new SharedMethods.ComboboxItem();
-                item.Text = user.Firstname + " " + user.Surname;
-                item.Value = user.UserId;
+            DataSet usersData = User.getAllUsers();
 
-                supervisorDropdown.Items.Add(item);
-                inspectorDropdown.Items.Add(item);
-            }
+            supervisorDropdown.DataSource = usersData.Tables[0];
+            supervisorDropdown.ValueMember = "UserID";
+            supervisorDropdown.DisplayMember = "Fullname";
 
+            inspectorDropdown.DataSource = usersData.Tables[0];
+            inspectorDropdown.ValueMember = "UserID";
+            inspectorDropdown.DisplayMember = "Fullname";
+
+            // Default value
             siteDropdown.SelectedIndex = 0;
             supervisorDropdown.SelectedIndex = 0;
             inspectorDropdown.SelectedIndex = 0;
@@ -130,6 +123,19 @@ namespace MuskProcessServices
 
         private void createSiteInspectionBtn_Click(object sender, EventArgs e)
         {
+            SiteInspection siteInspection = 
+                new SiteInspection(
+                    Convert.ToInt32(siteDropdown.SelectedValue),
+                    1, 
+                    2, 
+                    2, 
+                    workAreaField.Text, 
+                    jobDescriptionField.Text, 
+                    typeField.Text
+                );
+               
+            SharedMethods.SaveSiteInspectionToDB("INSERT INTO SiteInspections(SiteID, CompletedBy, Supervisor, Inspector, WorkArea, JobDescription, Type, Status) VALUES(@SiteID, @CompletedBy, @Supervisor, @Inspector, @WorkArea, @JobDescription, @Type, @Status)", siteInspection);
+
             // Enable Intervention details part of the form
             sectionDropdown.Enabled = true;
             countField.Enabled = true;

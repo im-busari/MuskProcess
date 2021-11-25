@@ -42,29 +42,17 @@ namespace MuskProcessServices {
         }
 
         // Methods
-        public static List<User> getAllUsers()
+        public static DataSet getAllUsers()
         {
             // Select all users from database 
             string queryExpression = String.Format("SELECT * FROM Users");
             DataSet result = queryExpression.getDataSetFromDB();
 
-            // Empty list of users
-            List<User> users = new List<User>();
+            // Creating a temporary column which we can use to display the whole name in the dropdown
+            result.Tables[0].Columns.Add("Fullname", typeof(string),
+                "Firstname + ' ' + Surname");
 
-            foreach (DataRow row in result.Tables[0].Rows)
-            {
-                users.Add(new User(
-                    row.Field<int>("UserID"), 
-                    row.Field<string>("Username"),
-                    row.Field<string>("Password"),
-                    row.Field<string>("Firstname"),
-                    row.Field<string>("Surname"),
-                    row.Field<string>("Email"),
-                    row.Field<int>("Role")
-                    ));
-            }
-
-            return users;
+            return result;
         }
         public static bool Login(string username, string password)
         {
