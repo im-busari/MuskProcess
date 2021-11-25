@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace MuskProcessServices
 {
@@ -22,11 +21,38 @@ namespace MuskProcessServices
         public Intervention() {}
 
         public Intervention(int subHeaderId, int count, string comment, bool completed, string actionTaken) {
-            _subHeaderId = subHeaderId;
+            _siteInspectionId = 3;
+            _subHeaderId = 2;
             _count = count;
             _comment = comment;
             _completed = completed;
             _actionTaken = actionTaken;
+        }
+
+        public static void SaveToDB(string sqlQuery, Intervention item)
+        {
+            using (SqlConnection connToDB = new SqlConnection(Properties.Settings.Default.DBConnectionString))
+            {
+                // Open connection
+                connToDB.Open();
+
+                SqlCommand sqlCommand = new SqlCommand(sqlQuery, connToDB);
+
+                // Set the sqlCommand's properties
+                sqlCommand.CommandType = CommandType.Text;
+
+                sqlCommand.Parameters.Add(new SqlParameter("SiteInspectionID", item.SiteInspectionID));
+                sqlCommand.Parameters.Add(new SqlParameter("SubHeaderID", item.SubHeaderID));
+                sqlCommand.Parameters.Add(new SqlParameter("Count", item.Count));
+                sqlCommand.Parameters.Add(new SqlParameter("Comment", item.Comment));
+                sqlCommand.Parameters.Add(new SqlParameter("Completed", item.Completed));
+                sqlCommand.Parameters.Add(new SqlParameter("ActionTaken", item.ActionTaken));
+
+                // execute the command
+                sqlCommand.ExecuteNonQuery();
+                MessageBox.Show("Welcome back!");
+                MessageBox.Show(item.Count.ToString());
+            }
         }
 
         public int InterventionID

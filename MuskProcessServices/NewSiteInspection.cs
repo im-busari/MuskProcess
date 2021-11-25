@@ -12,6 +12,7 @@ namespace MuskProcessServices
 {
     public partial class NewSiteInspection : Form
     {
+        private List<Intervention> interventions = new List<Intervention>(); 
         public NewSiteInspection()
         {
             InitializeComponent();
@@ -27,9 +28,22 @@ namespace MuskProcessServices
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void addNewBtn_Click(object sender, EventArgs e)
         {
+            // Get value from form and add them to List<Interventions>
+            interventions.Add(new Intervention(sectionField.SelectedIndex,
+                Int32.Parse(countField.Text),
+                commentField.Text,
+                completedCheckBox.Checked,
+                actionTakenField.Text)
+                );
 
+            // Clear out the form for new interventions to be added
+            sectionField.SelectedIndex = 0;
+            countField.Text = "";
+            commentField.Text = "";
+            completedCheckBox.Checked = false;
+            actionTakenField.Text = "";
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -49,17 +63,10 @@ namespace MuskProcessServices
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<SubHeader> list = new List<SubHeader>();
-            list.Add(new SubHeader() { _subHeaderID = 1, _subTitle = "Working Standards" });
-            list.Add(new SubHeader() { _subHeaderID = 2, _subTitle = "Quality" });
-            list.Add(new SubHeader() { _subHeaderID = 3, _subTitle = "Site Rules" });
-            list.Add(new SubHeader() { _subHeaderID = 4, _subTitle = "Environmental" });
-            list.Add(new SubHeader() { _subHeaderID = 5, _subTitle = "Protection of Individuals" });
-            list.Add(new SubHeader() { _subHeaderID = 6, _subTitle = "Equipment" });
-            list.Add(new SubHeader() { _subHeaderID = 7, _subTitle = "Other" });
-            section.DataSource = list;
-            section.ValueMember = "subHeaderID";
-            section.DisplayMember = "subTitle";
+            sectionField.SelectedIndex = 0;
+
+            // get selected item id, defined for testing purposes
+            sectionField.SelectedValue = 0;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -74,10 +81,25 @@ namespace MuskProcessServices
 
         private void section_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            SubHeader obj = section.SelectedItem as SubHeader;
+            SubHeader obj = sectionField.SelectedItem as SubHeader;
             if (obj != null)
                 MessageBox.Show(string.Format(".{0} - {1} selected", obj._subHeaderID, obj._subTitle, MessageBoxButtons.OK, MessageBoxIcon.Information));
 
+        }
+
+        private void countField_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void finishBtn_Click(object sender, EventArgs e)
+        {
+            // add interventions to DB
+            // dbConn.saveToDB("INSERT INTO Interventions (SiteInspectionID, SubHeaderID, Count, Comment, Completed, ActionTaken) VALUES (@SiteInspectionID...)", siteInspectionId
+            Intervention item = interventions[0];
+            
+            Intervention.SaveToDB("INSERT INTO Interventions(SiteInspectionID, SubHeaderID, Count, Comment, Completed, ActionTaken) VALUES(@SiteInspectionID, @SubHeaderID, @Count, @Comment, @Completed, @ActionTaken)", item);
+            
         }
     }
 }
