@@ -16,6 +16,10 @@ namespace MuskProcessServices
         public NewSiteInspection()
         {
             InitializeComponent();
+
+            // block right side fields until user fills out the site inspection information (left)
+
+            // once filled out block the left side of the screen 
         }
 
         private void Form3_Load(object sender, EventArgs e)
