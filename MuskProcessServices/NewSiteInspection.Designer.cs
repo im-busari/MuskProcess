@@ -331,7 +331,6 @@ namespace MuskProcessServices
             this.sectionDropdown.Size = new System.Drawing.Size(121, 24);
             this.sectionDropdown.TabIndex = 17;
             this.sectionDropdown.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            this.sectionDropdown.SelectionChangeCommitted += new System.EventHandler(this.section_SelectionChangeCommitted);
             // 
             // groupBox1
             // 
@@ -435,7 +434,6 @@ namespace MuskProcessServices
             this.groupBox2.Size = new System.Drawing.Size(770, 469);
             this.groupBox2.TabIndex = 34;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // interventionHeader
             // 
@@ -466,7 +464,6 @@ namespace MuskProcessServices
             this.countField.Name = "countField";
             this.countField.Size = new System.Drawing.Size(121, 22);
             this.countField.TabIndex = 30;
-            this.countField.TextChanged += new System.EventHandler(this.countField_TextChanged);
             // 
             // button4
             // 

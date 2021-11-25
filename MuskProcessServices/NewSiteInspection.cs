@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MuskProcessServices.Models;
 
 namespace MuskProcessServices
 {
@@ -17,7 +18,15 @@ namespace MuskProcessServices
         {
             InitializeComponent();
 
+            // Get items from database and add them to dropdown list
+            populateDropdownFields();
+
             // Disable intervention details part from the form, until user creates a site inspection.
+            disableInterventionForm();
+        }
+
+        private void disableInterventionForm()
+        {
             sectionDropdown.Enabled = false;
             countField.Enabled = false;
             commentField.Enabled = false;
@@ -25,6 +34,37 @@ namespace MuskProcessServices
             actionTakenField.Enabled = false;
             addNewBtn.Enabled = false;
             uploadBtn.Enabled = false;
+        }
+
+        private void populateDropdownFields()
+        {
+            List<MuskSite> sites = MuskSite.getAllSites();
+            List<User> users = User.getAllUsers();
+
+            // Site dropdown items
+            foreach (MuskSite site in sites)
+            {
+                SharedMethods.ComboboxItem item = new SharedMethods.ComboboxItem();
+                item.Text = site.Name;
+                item.Value = site.SiteId;
+
+                siteDropdown.Items.Add(item);
+            }
+
+            // Users dropdown items (Supervisor and Inspector)
+            foreach (User user in users)
+            {
+                SharedMethods.ComboboxItem item = new SharedMethods.ComboboxItem();
+                item.Text = user.Firstname + " " + user.Surname;
+                item.Value = user.UserId;
+
+                supervisorDropdown.Items.Add(item);
+                inspectorDropdown.Items.Add(item);
+            }
+
+            siteDropdown.SelectedIndex = 0;
+            supervisorDropdown.SelectedIndex = 0;
+            inspectorDropdown.SelectedIndex = 0;
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -76,29 +116,6 @@ namespace MuskProcessServices
 
             // get selected item id, defined for testing purposes
             sectionDropdown.SelectedValue = 0;
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void section_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            SubHeader obj = sectionDropdown.SelectedItem as SubHeader;
-            if (obj != null)
-                MessageBox.Show(string.Format(".{0} - {1} selected", obj._subHeaderID, obj._subTitle, MessageBoxButtons.OK, MessageBoxIcon.Information));
-
-        }
-
-        private void countField_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void finishBtn_Click(object sender, EventArgs e)

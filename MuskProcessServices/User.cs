@@ -28,7 +28,7 @@ namespace MuskProcessServices {
         // Constructors
         public User() {}
 
-        public User(int userId,  string username, string password, string firstname, string surname, string email, int role, DateTime? updatedAt = null, DateTime? createdAt = null)
+        public User(int userId, string username, string password, string firstname, string surname, string email, int role, DateTime? updatedAt = null, DateTime? createdAt = null)
         {
             _userId = userId;
             _username = username;
