@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace MuskProcessServices {
     enum Role
@@ -12,6 +13,8 @@ namespace MuskProcessServices {
 
     public class User
     {
+        // Attributes
+        private int _userId { get; set; }
         private string _username { get; set; }
         private string _password { get; set; }
         private string _firstname { get; set; }
@@ -21,13 +24,13 @@ namespace MuskProcessServices {
         private DateTime? _updatedAt { get; set; }
         private DateTime? _createdAt { get; set; }
 
-        public User()
-        {
-        }
 
-        // Constructor that includes all properties;
-        public User(string username, string password, string firstname, string surname, string email, int role, DateTime? updatedAt = null, DateTime? createdAt = null)
+        // Constructors
+        public User() {}
+
+        public User(int userId,  string username, string password, string firstname, string surname, string email, int role, DateTime? updatedAt = null, DateTime? createdAt = null)
         {
+            _userId = userId;
             _username = username;
             _password = password;
             _firstname = firstname;
@@ -38,7 +41,31 @@ namespace MuskProcessServices {
             _createdAt = createdAt;
         }
 
-        // Login method - return true if user has been found and create new User object
+        // Methods
+        public static List<User> getAllUsers()
+        {
+            // Select all users from database 
+            string queryExpression = String.Format("SELECT * FROM Users");
+            DataSet result = queryExpression.getDataSetFromDB();
+
+            // Empty list of users
+            List<User> users = new List<User>();
+
+            foreach (DataRow row in result.Tables[0].Rows)
+            {
+                users.Add(new User(
+                    row.Field<int>("UserID"), 
+                    row.Field<string>("Username"),
+                    row.Field<string>("Password"),
+                    row.Field<string>("Firstname"),
+                    row.Field<string>("Surname"),
+                    row.Field<string>("Email"),
+                    row.Field<int>("Role")
+                    ));
+            }
+
+            return users;
+        }
         public static bool Login(string username, string password)
         {
             string queryExpression = String.Format("SELECT * FROM Users WHERE username='{0}' AND password='{1}'", username, password);
@@ -70,7 +97,10 @@ namespace MuskProcessServices {
             return user;
         }
 
-
+        public int UserId
+        {
+            get { return _userId; }
+        }
         public string Username
         {
             get { return _username; }
