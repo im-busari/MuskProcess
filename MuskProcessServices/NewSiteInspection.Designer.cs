@@ -463,10 +463,10 @@ namespace MuskProcessServices
             // backBtn
             // 
             this.backBtn.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.backBtn.Location = new System.Drawing.Point(60, 50);
+            this.backBtn.Location = new System.Drawing.Point(60, 58);
             this.backBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.backBtn.Name = "backBtn";
-            this.backBtn.Size = new System.Drawing.Size(75, 42);
+            this.backBtn.Size = new System.Drawing.Size(90, 34);
             this.backBtn.TabIndex = 35;
             this.backBtn.Text = "Back";
             this.backBtn.UseVisualStyleBackColor = false;

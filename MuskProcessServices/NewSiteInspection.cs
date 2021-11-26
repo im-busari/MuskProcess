@@ -97,7 +97,6 @@ namespace MuskProcessServices
             }
 
             MessageBox.Show("Successfully added to the DB.");
-            (new Menu()).Show();
             this.Hide();
         }
 
@@ -137,7 +136,6 @@ namespace MuskProcessServices
         private void backBtn_Click(object sender, EventArgs e)
         {
             // If there are values in the fields ask for confirmation
-            (new Menu()).Show();
             this.Hide();
         }
     }

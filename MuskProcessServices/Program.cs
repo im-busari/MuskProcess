@@ -16,7 +16,7 @@ namespace MuskProcessServices
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new NewSiteInspection());
+            Application.Run(new Menu());
         }
     }
 }

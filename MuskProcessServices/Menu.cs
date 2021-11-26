@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MuskProcessServices
@@ -20,22 +13,20 @@ namespace MuskProcessServices
             //MessageBox.Show(AuthState.CurrentUser.Username);
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form2_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void addNewInspectionBtn_Click(object sender, EventArgs e)
         {
             (new NewSiteInspection()).Show();
         }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void viewInspectionBtn_Click(object sender, EventArgs e)
+        {
+            (new ListOfInspections()).Show();
+        }
+        private void viewMonthlyReportBtn_Click(object sender, EventArgs e)
         {
             (new Monthly_Inspection_Report()).Show();
         }
