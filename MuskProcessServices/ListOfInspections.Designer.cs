@@ -31,25 +31,22 @@ namespace MuskProcessServices
         {
             this.components = new System.ComponentModel.Container();
             this.welcomeText = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.siteDropdown = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.enteredByDropdown = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.monthDropdown = new System.Windows.Forms.ComboBox();
+            this.yearDropdown = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.searchBtn = new System.Windows.Forms.Button();
             this.logoutBtn = new System.Windows.Forms.Button();
             this.backBtn = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.reloadBtn = new System.Windows.Forms.Button();
-            this.siteInspectionsDS = new MuskProcessServices.SiteInspectionsDS();
             this.dgvListOfInspections = new System.Windows.Forms.DataGridView();
             this.siteInspectionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.siteInspectionsTableAdapter = new MuskProcessServices.SiteInspectionsDSTableAdapters.SiteInspectionsTableAdapter();
             this.viewPdfBtn = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.siteInspectionsDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListOfInspections)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.siteInspectionsBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -64,13 +61,13 @@ namespace MuskProcessServices
             this.welcomeText.Text = "Welcome, John Doe";
             this.welcomeText.UseMnemonic = false;
             // 
-            // comboBox1
+            // siteDropdown
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(76, 237);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(193, 24);
-            this.comboBox1.TabIndex = 6;
+            this.siteDropdown.FormattingEnabled = true;
+            this.siteDropdown.Location = new System.Drawing.Point(76, 237);
+            this.siteDropdown.Name = "siteDropdown";
+            this.siteDropdown.Size = new System.Drawing.Size(193, 24);
+            this.siteDropdown.TabIndex = 6;
             // 
             // label1
             // 
@@ -94,13 +91,13 @@ namespace MuskProcessServices
             this.label2.Text = "Entered by:";
             this.label2.UseMnemonic = false;
             // 
-            // comboBox2
+            // enteredByDropdown
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(335, 237);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(193, 24);
-            this.comboBox2.TabIndex = 8;
+            this.enteredByDropdown.FormattingEnabled = true;
+            this.enteredByDropdown.Location = new System.Drawing.Point(335, 237);
+            this.enteredByDropdown.Name = "enteredByDropdown";
+            this.enteredByDropdown.Size = new System.Drawing.Size(193, 24);
+            this.enteredByDropdown.TabIndex = 8;
             // 
             // label3
             // 
@@ -113,21 +110,21 @@ namespace MuskProcessServices
             this.label3.Text = "Month:";
             this.label3.UseMnemonic = false;
             // 
-            // comboBox3
+            // monthDropdown
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(591, 237);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(112, 24);
-            this.comboBox3.TabIndex = 10;
+            this.monthDropdown.FormattingEnabled = true;
+            this.monthDropdown.Location = new System.Drawing.Point(591, 237);
+            this.monthDropdown.Name = "monthDropdown";
+            this.monthDropdown.Size = new System.Drawing.Size(112, 24);
+            this.monthDropdown.TabIndex = 10;
             // 
-            // comboBox4
+            // yearDropdown
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(733, 237);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(72, 24);
-            this.comboBox4.TabIndex = 12;
+            this.yearDropdown.FormattingEnabled = true;
+            this.yearDropdown.Location = new System.Drawing.Point(733, 237);
+            this.yearDropdown.Name = "yearDropdown";
+            this.yearDropdown.Size = new System.Drawing.Size(72, 24);
+            this.yearDropdown.TabIndex = 12;
             // 
             // label4
             // 
@@ -149,6 +146,7 @@ namespace MuskProcessServices
             this.searchBtn.TabIndex = 14;
             this.searchBtn.Text = "Search";
             this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // logoutBtn
             // 
@@ -171,6 +169,7 @@ namespace MuskProcessServices
             this.backBtn.TabIndex = 37;
             this.backBtn.Text = "Back";
             this.backBtn.UseVisualStyleBackColor = false;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
             // label9
             // 
@@ -193,11 +192,6 @@ namespace MuskProcessServices
             this.reloadBtn.UseVisualStyleBackColor = true;
             this.reloadBtn.Click += new System.EventHandler(this.reloadBtn_Click);
             // 
-            // siteInspectionsDS
-            // 
-            this.siteInspectionsDS.DataSetName = "SiteInspectionsDS";
-            this.siteInspectionsDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // dgvListOfInspections
             // 
             this.dgvListOfInspections.BackgroundColor = System.Drawing.Color.Gainsboro;
@@ -210,16 +204,6 @@ namespace MuskProcessServices
             this.dgvListOfInspections.RowTemplate.Height = 24;
             this.dgvListOfInspections.Size = new System.Drawing.Size(1042, 150);
             this.dgvListOfInspections.TabIndex = 41;
-            this.dgvListOfInspections.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListOfInspections_CellClick);
-            // 
-            // siteInspectionsBindingSource
-            // 
-            this.siteInspectionsBindingSource.DataMember = "SiteInspections";
-            this.siteInspectionsBindingSource.DataSource = this.siteInspectionsDS;
-            // 
-            // siteInspectionsTableAdapter
-            // 
-            this.siteInspectionsTableAdapter.ClearBeforeFill = true;
             // 
             // viewPdfBtn
             // 
@@ -246,18 +230,17 @@ namespace MuskProcessServices
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.yearDropdown);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.monthDropdown);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.enteredByDropdown);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.siteDropdown);
             this.Controls.Add(this.welcomeText);
             this.Name = "ListOfInspections";
             this.Text = "ListOfInspections";
             this.Load += new System.EventHandler(this.ListOfInspections_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.siteInspectionsDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListOfInspections)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.siteInspectionsBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -267,23 +250,21 @@ namespace MuskProcessServices
 
         #endregion
         private System.Windows.Forms.Label welcomeText;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox siteDropdown;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox enteredByDropdown;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox monthDropdown;
+        private System.Windows.Forms.ComboBox yearDropdown;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Button logoutBtn;
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button reloadBtn;
-        private SiteInspectionsDS siteInspectionsDS;
         private System.Windows.Forms.DataGridView dgvListOfInspections;
         private System.Windows.Forms.BindingSource siteInspectionsBindingSource;
-        private SiteInspectionsDSTableAdapters.SiteInspectionsTableAdapter siteInspectionsTableAdapter;
         private System.Windows.Forms.Button viewPdfBtn;
     }
 }
