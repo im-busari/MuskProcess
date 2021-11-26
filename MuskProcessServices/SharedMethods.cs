@@ -29,17 +29,6 @@ namespace MuskProcessServices
             return dataset;
         }
 
-        public class ComboboxItem
-        {
-            public string Text { get; set; }
-            public object Value { get; set; }
-
-            public override string ToString()
-            {
-                return Text;
-            }
-        }
-
         public static void SaveSiteInspectionToDB(string sqlQuery, SiteInspection item)
         {
             using (SqlConnection connToDB = new SqlConnection(Properties.Settings.Default.DBConnectionString))

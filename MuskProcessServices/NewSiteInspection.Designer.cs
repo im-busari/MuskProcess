@@ -64,7 +64,7 @@ namespace MuskProcessServices
             this.interventionHeader = new System.Windows.Forms.Label();
             this.finishBtn = new System.Windows.Forms.Button();
             this.countField = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.backBtn = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -96,7 +96,6 @@ namespace MuskProcessServices
             this.button2.TabIndex = 5;
             this.button2.Text = "Delete";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // pictureBox4
             // 
@@ -210,7 +209,6 @@ namespace MuskProcessServices
             this.textBox8.Size = new System.Drawing.Size(89, 15);
             this.textBox8.TabIndex = 15;
             this.textBox8.Text = "Comment";
-            this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // textBox9
             // 
@@ -222,7 +220,6 @@ namespace MuskProcessServices
             this.textBox9.Size = new System.Drawing.Size(89, 15);
             this.textBox9.TabIndex = 16;
             this.textBox9.Text = "Pictures";
-            this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 
             // label2
             // 
@@ -319,7 +316,6 @@ namespace MuskProcessServices
             this.textBox4.Size = new System.Drawing.Size(89, 15);
             this.textBox4.TabIndex = 11;
             this.textBox4.Text = "Section";
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // sectionDropdown
             // 
@@ -330,7 +326,6 @@ namespace MuskProcessServices
             this.sectionDropdown.Name = "sectionDropdown";
             this.sectionDropdown.Size = new System.Drawing.Size(121, 24);
             this.sectionDropdown.TabIndex = 17;
-            this.sectionDropdown.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -465,16 +460,17 @@ namespace MuskProcessServices
             this.countField.Size = new System.Drawing.Size(121, 22);
             this.countField.TabIndex = 30;
             // 
-            // button4
+            // backBtn
             // 
-            this.button4.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.button4.Location = new System.Drawing.Point(60, 50);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 42);
-            this.button4.TabIndex = 35;
-            this.button4.Text = "Back";
-            this.button4.UseVisualStyleBackColor = false;
+            this.backBtn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.backBtn.Location = new System.Drawing.Point(60, 50);
+            this.backBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.backBtn.Name = "backBtn";
+            this.backBtn.Size = new System.Drawing.Size(75, 42);
+            this.backBtn.TabIndex = 35;
+            this.backBtn.Text = "Back";
+            this.backBtn.UseVisualStyleBackColor = false;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
             // button5
             // 
@@ -505,7 +501,7 @@ namespace MuskProcessServices
             this.ClientSize = new System.Drawing.Size(1147, 660);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.backBtn);
             this.Controls.Add(this.workAreaField);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -558,7 +554,7 @@ namespace MuskProcessServices
         private System.Windows.Forms.ComboBox sectionDropdown;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox countField;

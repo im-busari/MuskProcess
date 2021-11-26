@@ -23,21 +23,13 @@ namespace MuskProcessServices
         }
 
         // Methods
-        public static List<SubHeader> getAllSubHeaders()
+        public static DataSet getAllSubHeaders()
         {
             // Select all subHeaders from database 
             string queryExpression = String.Format("SELECT * FROM SubHeaders");
             DataSet result = queryExpression.getDataSetFromDB();
 
-            // Empty list of subHeaders
-            List<SubHeader> subHeaders = new List<SubHeader>();
-
-            foreach (DataRow row in result.Tables[0].Rows)
-            {
-                subHeaders.Add(new SubHeader(row.Field<int>("SubHeaderID"), row.Field<string>("SubTitle")));
-            }
-
-            return subHeaders;
+            return result;
         }
 
         public int SubHeaderId

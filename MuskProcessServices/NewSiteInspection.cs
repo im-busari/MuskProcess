@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MuskProcessServices.Models;
 
@@ -44,28 +39,27 @@ namespace MuskProcessServices
             siteDropdown.DisplayMember = "Name";
 
             // Users dropdown items (Supervisor and Inspector)
-            DataSet usersData = User.getAllUsers();
-
-            supervisorDropdown.DataSource = usersData.Tables[0];
+            supervisorDropdown.DataSource = User.getAllUsers().Tables[0];
             supervisorDropdown.ValueMember = "UserID";
             supervisorDropdown.DisplayMember = "Fullname";
 
-            inspectorDropdown.DataSource = usersData.Tables[0];
+            inspectorDropdown.DataSource = User.getAllUsers().Tables[0];
             inspectorDropdown.ValueMember = "UserID";
             inspectorDropdown.DisplayMember = "Fullname";
+
+            // SubHeaders dropdown
+            sectionDropdown.DataSource = SubHeader.getAllSubHeaders().Tables[0];
+            sectionDropdown.ValueMember = "SubHeaderID";
+            sectionDropdown.DisplayMember = "SubTitle";
 
             // Default value
             siteDropdown.SelectedIndex = 0;
             supervisorDropdown.SelectedIndex = 0;
             inspectorDropdown.SelectedIndex = 0;
+            sectionDropdown.SelectedIndex = 0;
         }
 
         private void Form3_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
         {
 
         }
@@ -88,37 +82,23 @@ namespace MuskProcessServices
             actionTakenField.Text = "";
         }
 
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox8_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox9_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            sectionDropdown.SelectedIndex = 0;
-
-            // get selected item id, defined for testing purposes
-            sectionDropdown.SelectedValue = 0;
-        }
-
         private void finishBtn_Click(object sender, EventArgs e)
         {
+            // Get SiteInspectionId from the DB
+            string queryExpression = String.Format("SELECT * FROM SiteInspections");
+            DataSet result = queryExpression.getDataSetFromDB();
+
+            int siteInspectionId = result.Tables[0].Rows[0].Field<int>("SiteInspectionID") + 1;
+
             // add interventions to DB
-            // dbConn.saveToDB("INSERT INTO Interventions (SiteInspectionID, SubHeaderID, Count, Comment, Completed, ActionTaken) VALUES (@SiteInspectionID...)", siteInspectionId
-            Intervention item = interventions[0];
-            
-            Intervention.SaveToDB("INSERT INTO Interventions(SiteInspectionID, SubHeaderID, Count, Comment, Completed, ActionTaken) VALUES(@SiteInspectionID, @SubHeaderID, @Count, @Comment, @Completed, @ActionTaken)", item);
-            
+            foreach (Intervention item in interventions)
+            {
+                Intervention.SaveToDB("INSERT INTO Interventions(SiteInspectionID, SubHeaderID, Count, Comment, Completed, ActionTaken) VALUES(@SiteInspectionID, @SubHeaderID, @Count, @Comment, @Completed, @ActionTaken)", item, siteInspectionId);
+            }
+
+            MessageBox.Show("Successfully added to the DB.");
+            (new Menu()).Show();
+            this.Hide();
         }
 
         private void createSiteInspectionBtn_Click(object sender, EventArgs e)
@@ -126,9 +106,9 @@ namespace MuskProcessServices
             SiteInspection siteInspection = 
                 new SiteInspection(
                     Convert.ToInt32(siteDropdown.SelectedValue),
-                    1, 
-                    2, 
-                    2, 
+                    1, // edit to take currentUser.UserId value
+                    Convert.ToInt32(supervisorDropdown.SelectedValue),
+                    Convert.ToInt32(inspectorDropdown.SelectedValue), 
                     workAreaField.Text, 
                     jobDescriptionField.Text, 
                     typeField.Text
@@ -152,6 +132,13 @@ namespace MuskProcessServices
             jobDescriptionField.Enabled = false;
             inspectorDropdown.Enabled = false;
             typeField.Enabled = false;
+        }
+
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+            // If there are values in the fields ask for confirmation
+            (new Menu()).Show();
+            this.Hide();
         }
     }
 }

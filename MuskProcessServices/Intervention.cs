@@ -29,7 +29,7 @@ namespace MuskProcessServices
             _actionTaken = actionTaken;
         }
 
-        public static void SaveToDB(string sqlQuery, Intervention item)
+        public static void SaveToDB(string sqlQuery, Intervention item, int siteInspectionId)
         {
             using (SqlConnection connToDB = new SqlConnection(Properties.Settings.Default.DBConnectionString))
             {
@@ -41,7 +41,7 @@ namespace MuskProcessServices
                 // Set the sqlCommand's properties
                 sqlCommand.CommandType = CommandType.Text;
 
-                sqlCommand.Parameters.Add(new SqlParameter("SiteInspectionID", item.SiteInspectionID));
+                sqlCommand.Parameters.Add(new SqlParameter("SiteInspectionID", siteInspectionId));
                 sqlCommand.Parameters.Add(new SqlParameter("SubHeaderID", item.SubHeaderID));
                 sqlCommand.Parameters.Add(new SqlParameter("Count", item.Count));
                 sqlCommand.Parameters.Add(new SqlParameter("Comment", item.Comment));
@@ -50,8 +50,6 @@ namespace MuskProcessServices
 
                 // execute the command
                 sqlCommand.ExecuteNonQuery();
-                MessageBox.Show("Welcome back!");
-                MessageBox.Show(item.Count.ToString());
             }
         }
 
