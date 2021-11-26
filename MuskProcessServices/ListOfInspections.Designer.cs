@@ -44,12 +44,13 @@ namespace MuskProcessServices
             this.backBtn = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.reloadBtn = new System.Windows.Forms.Button();
-            this.dgvListOfInspections = new System.Windows.Forms.DataGridView();
             this.siteInspectionsDS = new MuskProcessServices.SiteInspectionsDS();
+            this.dgvListOfInspections = new System.Windows.Forms.DataGridView();
             this.siteInspectionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.siteInspectionsTableAdapter = new MuskProcessServices.SiteInspectionsDSTableAdapters.SiteInspectionsTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListOfInspections)).BeginInit();
+            this.viewPdfBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.siteInspectionsDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListOfInspections)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.siteInspectionsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -190,21 +191,26 @@ namespace MuskProcessServices
             this.reloadBtn.TabIndex = 40;
             this.reloadBtn.Text = "Reload Data";
             this.reloadBtn.UseVisualStyleBackColor = true;
-            // 
-            // dgvListOfInspections
-            // 
-            this.dgvListOfInspections.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListOfInspections.Location = new System.Drawing.Point(81, 335);
-            this.dgvListOfInspections.Name = "dgvListOfInspections";
-            this.dgvListOfInspections.RowHeadersWidth = 51;
-            this.dgvListOfInspections.RowTemplate.Height = 24;
-            this.dgvListOfInspections.Size = new System.Drawing.Size(240, 150);
-            this.dgvListOfInspections.TabIndex = 41;
+            this.reloadBtn.Click += new System.EventHandler(this.reloadBtn_Click);
             // 
             // siteInspectionsDS
             // 
             this.siteInspectionsDS.DataSetName = "SiteInspectionsDS";
             this.siteInspectionsDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dgvListOfInspections
+            // 
+            this.dgvListOfInspections.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dgvListOfInspections.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvListOfInspections.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvListOfInspections.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListOfInspections.Location = new System.Drawing.Point(81, 335);
+            this.dgvListOfInspections.Name = "dgvListOfInspections";
+            this.dgvListOfInspections.RowHeadersWidth = 51;
+            this.dgvListOfInspections.RowTemplate.Height = 24;
+            this.dgvListOfInspections.Size = new System.Drawing.Size(1042, 150);
+            this.dgvListOfInspections.TabIndex = 41;
+            this.dgvListOfInspections.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListOfInspections_CellClick);
             // 
             // siteInspectionsBindingSource
             // 
@@ -215,11 +221,24 @@ namespace MuskProcessServices
             // 
             this.siteInspectionsTableAdapter.ClearBeforeFill = true;
             // 
+            // viewPdfBtn
+            // 
+            this.viewPdfBtn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.viewPdfBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            this.viewPdfBtn.Location = new System.Drawing.Point(1154, 352);
+            this.viewPdfBtn.Name = "viewPdfBtn";
+            this.viewPdfBtn.Size = new System.Drawing.Size(108, 34);
+            this.viewPdfBtn.TabIndex = 42;
+            this.viewPdfBtn.Text = "View PDF";
+            this.viewPdfBtn.UseVisualStyleBackColor = false;
+            this.viewPdfBtn.Click += new System.EventHandler(this.viewPdfBtn_Click);
+            // 
             // ListOfInspections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 746);
+            this.Controls.Add(this.viewPdfBtn);
             this.Controls.Add(this.dgvListOfInspections);
             this.Controls.Add(this.reloadBtn);
             this.Controls.Add(this.label9);
@@ -238,8 +257,8 @@ namespace MuskProcessServices
             this.Name = "ListOfInspections";
             this.Text = "ListOfInspections";
             this.Load += new System.EventHandler(this.ListOfInspections_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListOfInspections)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.siteInspectionsDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListOfInspections)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.siteInspectionsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -261,9 +280,10 @@ namespace MuskProcessServices
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button reloadBtn;
-        private System.Windows.Forms.DataGridView dgvListOfInspections;
         private SiteInspectionsDS siteInspectionsDS;
+        private System.Windows.Forms.DataGridView dgvListOfInspections;
         private System.Windows.Forms.BindingSource siteInspectionsBindingSource;
         private SiteInspectionsDSTableAdapters.SiteInspectionsTableAdapter siteInspectionsTableAdapter;
+        private System.Windows.Forms.Button viewPdfBtn;
     }
 }
