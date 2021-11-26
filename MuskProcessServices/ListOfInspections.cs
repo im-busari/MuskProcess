@@ -33,10 +33,8 @@ namespace MuskProcessServices
 
         private void viewPdfBtn_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dgvListOfInspections.SelectedRows)
-            {
-                MessageBox.Show(row.Cells[2].Value.ToString());
-            }
+            // pass siteInspectionID
+            PDFReport.generatePDF(1);
         }
 
         private void backBtn_Click(object sender, EventArgs e)
@@ -58,6 +56,10 @@ namespace MuskProcessServices
                 "GROUP BY SiteInspections.SiteInspectionID, SiteInspections.CreatedAt, Sites.Name, SiteInspections.WorkArea, users1.Firstname, users1.Surname, users2.Firstname, users2.Surname " +
                 "ORDER BY SiteInspections.SiteInspectionID"
                 );
+
+
+
+
 
             if (sqlCondition != null)
             {
