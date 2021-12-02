@@ -133,5 +133,15 @@ namespace MuskProcessServices
                 MessageBox.Show("No conditions");
             }
         }
+
+        private void siteDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void yearDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
