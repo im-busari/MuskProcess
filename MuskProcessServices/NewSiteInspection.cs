@@ -138,5 +138,10 @@ namespace MuskProcessServices
             // If there are values in the fields ask for confirmation
             this.Hide();
         }
+
+        private void siteDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

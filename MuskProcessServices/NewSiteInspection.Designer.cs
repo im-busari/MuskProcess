@@ -389,6 +389,7 @@ namespace MuskProcessServices
             this.siteDropdown.Name = "siteDropdown";
             this.siteDropdown.Size = new System.Drawing.Size(121, 24);
             this.siteDropdown.TabIndex = 38;
+            this.siteDropdown.SelectedIndexChanged += new System.EventHandler(this.siteDropdown_SelectedIndexChanged);
             // 
             // siteHeader
             // 
